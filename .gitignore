@@ -1,0 +1,24 @@
+# Skill builds
+*.skill
+dist/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# API keys and config (keep these local!)
+config.json
+*.key
+.secrets
+
+# Logs
+*.log

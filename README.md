@@ -1,72 +1,126 @@
-# Porkbun DNS Management Skill
+# Porkbun DNS Management Skill for OpenClaw
 
-A skill for managing Porkbun DNS records and domains via API v3.
+Manage Porkbun DNS records and domains via API v3.
 
-## For Users Using as a Skill
+## Overview
 
-This skill can be installed in OpenClaw to enable DNS management capabilities. The skill includes a CLI tool for reliable DNS operations.
+This skill enables OpenClaw to manage DNS records on Porkbun's DNS service. It includes a CLI tool for reliable, deterministic DNS operations.
 
-### Installing
+## Installation
 
-1. Get the skill file: `porkbun.skill`
-2. Install in OpenClaw: Follow clawhub.ai instructions for skill installation
+### For OpenClaw Users
 
-### What It Does
+Installation will be available via clawhub.ai once published. The skill file is `porkbun.skill`.
 
-- Create, read, update, delete DNS records on Porkbun
-- List and manage domains
-- Supports all common DNS record types (A, AAAAA, CNAME, MX, TXT, etc.)
-- Includes CLI tool for deterministic operations
-- Complete API v3 integration
+### Manual Installation
 
-## For Developers - Publishing to clawhub.ai
+1. Download `porkbun.skill`
+2. Install in your OpenClaw skills directory
+3. Configure API credentials (see Setup below)
 
-### Prerequisites
+## Setup
 
-- A git repository at git.theta42.com
-- SSH access or credentials for pushing
+### 1. Get API Keys
 
-### Setup Steps
+Generate API keys at: https://porkbun.com/account/api
 
-1. **Create the git repository at git.theta42.com**
-   - Log into git.theta42.com
-   - Create a new repository: `porkbun-skill` or similar
-   - Initialize it (or let us push to it)
+### 2. Configure Credentials
 
-2. **Push the code**
-   ```bash
-   cd ~/.openclaw/workspace/skills/public/porkbun
-   git remote add origin git@git.theta42.com:your-username/porkbun-skill.git
-   git branch -M main
-   git push -u origin main
-   ```
+Create `~/.config/porkbun/config.json`:
+```json
+{
+  "apiKey": "your-porkbun-api-key",
+  "secretApiKey": "your-porkbun-secret-key"
+}
+```
 
-3. **Publish to clawhub.ai**
-   - Go to https://clawhub.ai/
-   - Link your git.theta42.com repository
-   - Add metadata (version, tags, description)
-   - Publish the skill
+**Important:** These keys are sensitive. Keep them secure and don't commit them to git.
 
-4. **Update the skill file**
-   - After publishing, the `.skill` file can be hosted on clawhub.ai
-   - Users can install it from there
+### 3. Enable API Access
 
-## Skill Contents
+For each domain you want to manage:
+1. Go to Domain Management on Porkbun
+2. Click Details next to the domain
+3. Enable "API Access"
+
+## Usage
+
+The skill integrates with OpenClaw and provides automated DNS management. Common operations:
+
+- **Create records:** A, AAAA, CNAME, MX, TXT, and more
+- **List domains and records**
+- **Update existing records**
+- **Delete records**
+- **Batch operations by type/subdomain**
+
+Example conversations:
+- "Create an A record for www.example.com pointing to 1.1.1.1"
+- "Update the MX record for example.com to use Google Workspace"
+- "Delete all TXT records for old.example.com"
+
+## Features
+
+- **Full API v3 support:** All Porkbun DNS endpoints
+- **CLI tool included:** Deterministic operations via `scripts/porkbun-dns.js`
+- **Comprehensive documentation:** Reference guides for all record types
+- **Batch operations:** Edit/delete multiple records at once
+- **Common patterns:** Pre-built workflows for websites, email, dynamic DNS
+
+## Documentation
+
+Inside the skill:
+- **SKILL.md** - Main usage guide
+- **references/dns-record-types.md** - Complete DNS record reference
+
+Online:
+- [Porkbun API Documentation](https://porkbun.com/api/json/v3/documentation)
+- [OpenClaw Skills](https://clawhub.ai/)
+
+## Development
+
+### Repository Structure
 
 ```
 porkbun/
-├── SKILL.md                    # Main skill documentation (required)
+├── SKILL.md                    # Main skill documentation
 ├── scripts/
-│   └── porkbun-dns.js         # CLI tool for DNS operations
+│   └── porkbun-dns.js         # CLI tool
 └── references/
-    └── dns-record-types.md    # DNS record reference guide
+    └── dns-record-types.md    # DNS reference
 ```
+
+### Building the .skill file
+
+```bash
+cd ~/.openclaw/workspace/skills/public/porkbun
+zip -r ../porkbun.skill SKILL.md scripts/ references/
+```
+
+### Testing
+
+Test connection:
+```bash
+node scripts/porkbun-dns.js ping
+```
+
+List your domains:
+```bash
+node scripts/porkbun-dns.js list
+```
+
+## Contributing
+
+This skill is maintained for the OpenClaw community. For issues or improvements:
+1. Check this repository
+2. Open an issue or pull request
 
 ## License
 
-This skill is provided as-is for use with OpenClaw.
+Provided as-is for use with OpenClaw.
 
-## Support
+## Links
 
-For API documentation: https://porkbun.com/api/json/v3/documentation
-For skill issues: Check the source repository on git.theta42.com
+- [OpenClaw](https://docs.openclaw.ai/)
+- [ClawHub](https://clawhub.ai/)
+- [Porkbun](https://porkbun.com/)
+- [Theta42](https://theta42.com/)
