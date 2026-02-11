@@ -30,6 +30,25 @@ All notable changes to the Porkbun DNS skill will be documented in this file.
 
 ---
 
+## [1.0.1] - 2026-02-11
+
+### Added
+- `package.json` with complete OpenClaw skill metadata
+- `CHANGELOG.md` for version tracking
+- `LICENSE` (MIT) for proper licensing
+
+### Changed
+- `package.json` now explicitly declares required environment variables (`PORKBUN_API_KEY`, `PORKBUN_SECRET_API_KEY`)
+- Documented config file path: `~/.config/porkbun/config.json`
+- Updated `README.md` with enhanced installation instructions
+- Added references to CHANGELOG, LICENSE, and package.json in README
+
+### Security
+- Addressed security scanner recommendations by transparently declaring credential requirements
+- Clearly documented where credentials are stored and how they're used
+
+---
+
 ## [Unreleased]
 
 ### Planned

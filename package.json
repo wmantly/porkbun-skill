@@ -1,6 +1,6 @@
 {
   "name": "porkbun-dns",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage Porkbun DNS records and domains via API v3. Create, read, update, and delete DNS records for domains managed by Porkbun.",
   "homepage": "http://git.theta42.com/nova/porkbun-skill",
   "author": {
