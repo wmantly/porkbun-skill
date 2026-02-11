@@ -10,31 +10,46 @@ This skill enables OpenClaw to manage DNS records on Porkbun's DNS service. It i
 
 ### For OpenClaw Users
 
-Installation will be available via clawhub.ai once published. The skill file is `porkbun.skill`.
+Installation is available via clawhub.ai: `openclaw skills install porkbun-dns`
 
 ### Manual Installation
 
-1. Download `porkbun.skill`
-2. Install in your OpenClaw skills directory
-3. Configure API credentials (see Setup below)
+1. Download or clone this repository
+2. Create `~/.config/porkbun/config.json` with your credentials (see Setup below)
+3. The CLI tool is available at `scripts/porkbun-dns.js`
 
 ## Setup
 
 ### 1. Get API Keys
 
-Generate API keys at: https://porkbun.com/account/api
+1. Log in to Porkbun
+2. Visit https://porkbun.com/account/api
+3. Generate API credentials (both public and secret keys)
 
 ### 2. Configure Credentials
 
-Create `~/.config/porkbun/config.json`:
-```json
+**Option A: Config file (recommended)**
+```bash
+mkdir -p ~/.config/porkbun
+cat > ~/.config/porkbun/config.json << EOF
 {
-  "apiKey": "your-porkbun-api-key",
-  "secretApiKey": "your-porkbun-secret-key"
+  "apiKey": "your-pk1-api-key-here",
+  "secretApiKey": "your-sk1-secret-key-here"
 }
+EOF
 ```
 
-**Important:** These keys are sensitive. Keep them secure and don't commit them to git.
+**Option B: Environment variables**
+```bash
+export PORKBUN_API_KEY="your-pk1-api-key-here"
+export PORKBUN_SECRET_API_KEY="your-sk1-secret-key-here"
+```
+
+**Important:**
+- These keys are sensitive - never commit them to git or share publicly
+- The config file is read automatically if present
+- Environment variables take precedence over config file
+- Store credentials in `~/.config/porkbun/` which is excluded from git
 
 ### 3. Enable API Access
 
@@ -69,8 +84,10 @@ Example conversations:
 ## Documentation
 
 Inside the skill:
+- **CHANGELOG.md** - Version history and changes
 - **SKILL.md** - Main usage guide
 - **references/dns-record-types.md** - Complete DNS record reference
+- **package.json** - Skill metadata and environment requirements
 
 Online:
 - [Porkbun API Documentation](https://porkbun.com/api/json/v3/documentation)
